@@ -89,7 +89,7 @@ Properties | Description | Type | Values and Default
 path | File to update | String | Required, no default
 line | Line contents |  String | Required, no default
 eol | Alternate line end characters |  String | default \n on unix, \r\n on windows
-sensitive | Suppress printing file changes | Boolean | default true
+discrete | Suppress printing file changes | Boolean | default true
 backup | Backup before changing |  Boolean | default false
 
 ## Resource: replace_or_add
@@ -106,7 +106,7 @@ pattern | Regular expression to select lines | Regular expression or String | Re
 line | Line contents |  String | Required, no default
 replace_only | Don't append only replace matching lines |  true or false | Required, no default
 eol | Alternate line end characters |  String | default \n on unix, \r\n on windows
-sensitive | Suppress printing file changes | Boolean | default true
+discrete | Suppress printing file changes | Boolean | default true
 backup | Backup before changing |  Boolean | default false
 
 ## Resource: delete_lines
@@ -122,7 +122,7 @@ path | File to update | String | Required, no default
 pattern | Regular expression to select lines | Regular expression or String | Required, no default
 ignore_missing | Don't fail if the file is missing  |  true or false | Default is false
 eol | Alternate line end characters |  String | default \n on unix, \r\n on windows
-sensitive | Suppress printing file changes | Boolean | default true
+discrete | Suppress printing file changes | Boolean | default true
 backup | Backup before changing |  Boolean | default false
 
 ### Notes
@@ -143,7 +143,7 @@ delim | Delimiter entries | Array | Array of 1, 2 or 3 multi-character elements
 entry | Value to add | String | Required, No default
 ends_with | List ending |  String | No default
 eol | Alternate line end characters |  String | default \n on unix, \r\n on windows
-sensitive | Suppress printing file changes | Boolean | default true
+discrete | Suppress printing file changes | Boolean | default true
 backup | Backup before changing |  Boolean | default false
 
 ### Notes
@@ -184,7 +184,7 @@ entry | Value to delete | String | Required, No default
 ends_with | List ending |  String | No default
 ignore_missing | Don't fail if the file is missing  |  true or false | Default is false
 eol | Alternate line end characters |  String | default \n on unix, \r\n on windows
-sensitive | Suppress printing file changes | Boolean | default true
+discrete | Suppress printing file changes | Boolean | default true
 backup | Backup before changing |  Boolean | default false
 
 ### Notes

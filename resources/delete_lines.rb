@@ -2,7 +2,7 @@ property :path, String
 property :pattern, [String, Regexp]
 property :ignore_missing, [true, false], default: false
 property :eol, String, default: Line::OS.unix? ? "\n" : "\r\n"
-property :sensitive, [true, false], default: true
+property :discrete, [true, false], default: true
 property :backup, [true, false], default: false
 
 resource_name :delete_lines
@@ -20,7 +20,7 @@ action :edit do
   file new_resource.path do
     content new.join(eol)
     backup new_resource.backup
-    sensitive new_resource.sensitive
+    sensitive new_resource.discrete
     not_if { new == current }
   end
 end
