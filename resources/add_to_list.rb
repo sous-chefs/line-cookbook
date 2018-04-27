@@ -4,7 +4,6 @@ property :delim, Array
 property :entry, String
 property :ends_with, String
 property :eol, String, default: Line::OS.unix? ? "\n" : "\r\n"
-property :discrete, [true, false], default: true
 property :backup, [true, false], default: false
 
 resource_name :add_to_list
@@ -12,6 +11,7 @@ resource_name :add_to_list
 action :edit do
   raise "File #{new_resource.path} not found" unless ::File.exist?(new_resource.path)
 
+  new_resource.sensitive = true unless property_is_set?(:sensitive)
   eol = new_resource.eol
   current = ::File.binread(new_resource.path).split(eol)
   new = insert_list_entry(current)
@@ -20,7 +20,7 @@ action :edit do
   file new_resource.path do
     content new.join(eol)
     backup new_resource.backup
-    sensitive new_resource.discrete
+    sensitive new_resource.sensitive
     not_if { new == current }
   end
 end
