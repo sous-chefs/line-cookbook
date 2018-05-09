@@ -1,23 +1,25 @@
 property :path, String
 property :line, String
+property :ignore_missing, [true, false], default: false
+property :eol, String, default: Line::OS.unix? ? "\n" : "\r\n"
+property :backup, [true, false], default: false
 
 resource_name :append_if_no_line
 
 action :edit do
+  file_exist = ::File.exist?(new_resource.path)
+  raise "File #{new_resource.path} not found" unless file_exist || new_resource.ignore_missing
+
+  new_resource.sensitive = true unless property_is_set?(:sensitive)
+  eol = new_resource.eol
   string = Regexp.escape(new_resource.line)
   regex = /^#{string}$/
-
-  raise "File #{new_resource.path} not found" unless ::File.exist?(new_resource.path)
-
-  current = ::File.readlines(new_resource.path)
-  # we match the regexp after doing this append for files without terminating CRs.  should
-  # we instead match against the unchanged content?  we're basically saying "don't worry
-  # about terminating CRs or not, we gotcha covered" which feels like the 99% use case.  but
-  # is there a 1% use case here which considers this a bug?
-  current[-1] = current[-1].chomp + "\n" if current[-1].respond_to?(:chomp)
+  current = file_exist ? ::File.binread(new_resource.path).split(eol) : []
 
   file new_resource.path do
-    content((current + [new_resource.line + "\n"]).join)
+    content((current + [new_resource.line + eol]).join(eol))
+    backup new_resource.backup
+    sensitive new_resource.sensitive
     not_if { ::File.exist?(new_resource.path) && !current.grep(regex).empty? }
   end
 end

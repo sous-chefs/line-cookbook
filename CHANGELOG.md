@@ -1,5 +1,11 @@
 # line Cookbook CHANGELOG
 
+## v
+
+- Breaking change - Files are processed in memory instead of line by line
+- Use template files instead of cookbook_file so that we get platform sensitive line endings written for testing.
+- Add windows support to add_to_list append_if_no_line delete_from_list delete_lines replace_or_add
+
 ## v1.2.0 (2018-04-18)
 
 - Add the ignore_missing option to the delete_lines and delete_from_list. Don't raise an error if the target file is missing.

@@ -9,6 +9,6 @@ source_url       'https://github.com/sous-chefs/line-cookbook'
 issues_url       'https://github.com/sous-chefs/line-cookbook/issues'
 chef_version     '>= 12.5' if respond_to?(:chef_version)
 
-%w(debian ubuntu centos redhat scientific oracle amazon).each do |os|
+%w(debian ubuntu centos redhat scientific oracle amazon windows).each do |os|
   supports os
 end

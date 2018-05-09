@@ -1,3 +1,5 @@
+directory '/tmp'
+
 add_to_list 'Add to list 1' do
   path '/tmp/dangerfile3'
   pattern 'empty_list='

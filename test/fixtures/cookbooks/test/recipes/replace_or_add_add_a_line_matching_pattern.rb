@@ -5,8 +5,8 @@
 # Add a line that exactly matches the specified pattern.
 #
 
-cookbook_file '/tmp/add_a_line_matching_pattern' do
-  source 'text_file'
+template '/tmp/add_a_line_matching_pattern' do
+  source 'text_file.erb'
 end
 
 replace_or_add 'add_a_line_matching_pattern' do

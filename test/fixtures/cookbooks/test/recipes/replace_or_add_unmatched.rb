@@ -5,8 +5,8 @@
 # Add a line that does not match the pattern
 #
 
-cookbook_file '/tmp/unmatched' do
-  source 'text_file'
+template '/tmp/unmatched' do
+  source 'text_file.erb'
 end
 
 replace_or_add 'unmatched' do

@@ -2,73 +2,47 @@ property :path, String
 property :pattern, [String, Regexp]
 property :line, String
 property :replace_only, [true, false]
+property :eol, String, default: Line::OS.unix? ? "\n" : "\r\n"
+property :backup, [true, false], default: false
 
 resource_name :replace_or_add
 
 action :edit do
+  new_resource.sensitive = true unless property_is_set?(:sensitive)
   regex = new_resource.pattern.is_a?(String) ? /#{new_resource.pattern}/ : new_resource.pattern
+  eol = new_resource.eol
+  new = []
 
   if ::File.exist?(new_resource.path)
-    begin
-      f = ::File.open(new_resource.path, 'r+')
-
-      file_owner = f.lstat.uid
-      file_group = f.lstat.gid
-      file_mode = f.lstat.mode
-
-      temp_file = Tempfile.new('foo')
-
-      modified = false
-      found = false
-
-      f.each_line do |line|
-        if line =~ regex || line.chomp == new_resource.line
-          found = true
-          unless line.chomp == new_resource.line
-            line = new_resource.line
-            modified = true
-          end
-        end
-
-        temp_file.puts line
-      end
-
-      unless found || new_resource.replace_only # "add"!
-        temp_file.puts new_resource.line
-        modified = true
-      end
-
-      f.close
-
-      if modified
-        converge_by "Updating file #{new_resource.path}" do
-          temp_file.rewind
-          FileUtils.copy_file(temp_file.path, new_resource.path)
-          FileUtils.chown(file_owner, file_group, new_resource.path)
-          FileUtils.chmod(file_mode, new_resource.path)
-        end
-      end
-    ensure
-      temp_file.close
-      temp_file.unlink
-    end
+    current = ::File.binread(new_resource.path).split(eol)
+    found = false
   else
+    current = []
     unless new_resource.replace_only
-      converge_by "Updating file #{new_resource.path}" do
-        begin
-          nf = ::File.open(new_resource.path, 'w')
-          nf.puts new_resource.line
-        rescue ENOENT
-          Chef::Log.info('ERROR: Containing directory does not exist for #{nf.class}')
-        ensure
-          nf.close
-        end
-      end
+      found = true
+      new << new_resource.line
     end
   end
-end
 
-action_class.class_eval do
-  require 'fileutils'
-  require 'tempfile'
+  # replace
+  current.each do |line|
+    line = line.dup
+    if line =~ regex || line == new_resource.line
+      found = true
+      line = new_resource.line unless line == new_resource.line
+    end
+    new << line
+  end
+
+  # add
+  new << new_resource.line unless found || new_resource.replace_only
+
+  new[-1] += eol unless new[-1].to_s.empty?
+
+  file new_resource.path do
+    content new.join(eol)
+    backup new_resource.backup
+    sensitive new_resource.sensitive
+    not_if { new == current }
+  end
 end

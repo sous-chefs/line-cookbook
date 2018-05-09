@@ -1,6 +1,8 @@
 ---
 driver:
   name: vagrant
+#driver_config:
+#  require_chef_omnibus: 12.21.31
 
 provisioner:
   name: chef_zero
@@ -13,6 +15,9 @@ verifier: inspec
 
 platforms:
 - name: ubuntu-16.04
+- name: windows-2012r2
+  driver_config:
+    box: mwrock/Windows2012R2
 
 suites:
 - name: delete_from_list

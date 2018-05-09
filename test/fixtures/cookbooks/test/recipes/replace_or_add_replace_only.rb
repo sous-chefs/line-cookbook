@@ -3,8 +3,8 @@
 #
 #
 
-cookbook_file '/tmp/replace_only' do
-  source 'text_file'
+template '/tmp/replace_only' do
+  source 'text_file.erb'
 end
 
 replace_or_add 'replace_only' do
@@ -21,8 +21,8 @@ replace_or_add 'replace_only redo' do
   replace_only true
 end
 
-cookbook_file '/tmp/replace_only_nomatch' do
-  source 'text_file'
+template '/tmp/replace_only_nomatch' do
+  source 'text_file.erb'
 end
 
 replace_or_add 'replace_only_nomatch' do

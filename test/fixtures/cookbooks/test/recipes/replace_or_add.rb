@@ -1,11 +1,9 @@
-cookbook_file '/tmp/dangerfile' do
-  owner 'root'
-  mode '00644'
+directory '/tmp'
+
+template '/tmp/dangerfile' do
 end
 
-cookbook_file '/tmp/dangerfile2' do
-  owner 'root'
-  mode '00644'
+template '/tmp/dangerfile2' do
 end
 
 replace_or_add 'Operation 2' do
@@ -36,4 +34,15 @@ replace_or_add 'Operation 6' do
   path '/tmp/dangerfile2'
   pattern 'ssh-rsa'
   line 'ssh-rsa change 2'
+end
+
+file '/tmp/emptyfile' do
+  content ''
+end
+
+replace_or_add 'Do nothing to the empty file' do
+  path '/tmp/emptyfile'
+  pattern 'line'
+  line 'line add'
+  replace_only true
 end

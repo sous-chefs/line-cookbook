@@ -8,3 +8,4 @@ summary: Custom inspec resources for the line cookbook
 version: 1.0.0
 supports:
   - os-family: unix
+  - os-family: windows

@@ -5,8 +5,8 @@
 # Change the last line of a file
 #
 
-cookbook_file '/tmp/change_line_eof' do
-  source 'text_file'
+template '/tmp/change_line_eof' do
+  source 'text_file.erb'
 end
 
 replace_or_add 'change_line_eof' do

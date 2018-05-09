@@ -1,5 +1,6 @@
 control 'Replace or add to a missing file' do
-  describe matches('/tmp/missingfile', /^add this line$/) do
+  eol = os.family == 'windows' ? "\r\n" : "\n"
+  describe matches('/tmp/missingfile', /^add this line#{eol}/) do
     its('count') { should eq 1 }
   end
 
@@ -7,7 +8,7 @@ control 'Replace or add to a missing file' do
     its('size_lines') { should eq 1 }
   end
 
-  describe matches('/tmp/missingfile_matches_pattern', /^add this line$/) do
+  describe matches('/tmp/missingfile_matches_pattern', /^add this line#{eol}/) do
     its('count') { should eq 1 }
   end
 
@@ -21,8 +22,8 @@ control 'Replace or add to a missing file' do
 
   # redo of resource did nothing
   describe file('/tmp/chef_resource_status') do
-    its(:content) { should match(/missing_file redo.*n$/) }
-    its(:content) { should match(/missing_file matches_pattern redo.*n$/) }
-    its(:content) { should match(/missing_file replace_only.*n$/) }
+    its(:content) { should match(/missing_file redo.*n#{eol}/) }
+    its(:content) { should match(/missing_file matches_pattern redo.*n#{eol}/) }
+    its(:content) { should match(/missing_file replace_only.*n#{eol}/) }
   end
 end

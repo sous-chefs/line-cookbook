@@ -1,4 +1,5 @@
 title 'Delete from list'
+eol = os.family == 'windows' ? "\r\n" : "\n"
 
 describe file('/tmp/dangerfile3') do
   its(:content) { should_not match(/192\.168\.0\.0/) }
@@ -23,9 +24,15 @@ control 'File should still contain' do
 end
 
 describe file('/tmp/dangerfile3') do
-  its(:content) { should match(/reported$/) }
-  its(:content) { should match(/altform$/) }
-  its(:content) { should match(/double  space  entry  fin$/) }
-  its(:content) { should match(/^list, comma-space, fourth$/) }
-  its(:content) { should match(/^list ,space-comma ,fourth$/) }
+  its(:content) { should match(/reported#{eol}/) }
+  its(:content) { should match(/altform#{eol}/) }
+  its(:content) { should match(/double  space  entry  fin#{eol}/) }
+  its(:content) { should match(/^list, comma-space, fourth#{eol}/) }
+  its(:content) { should match(/^list ,space-comma ,fourth#{eol}/) }
+  its(:content) { should match(/^last line#{eol}/) }
+end
+
+describe file('/tmp/emptyfile') do
+  it { should exist }
+  its(:size) { should eq 0 }
 end
