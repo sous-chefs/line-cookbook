@@ -8,7 +8,6 @@ class Chef
       def initialize(file = '/tmp/resource_status')
         @config = {}
         @config[:file] ||= file
-        @config
       end
 
       def report
