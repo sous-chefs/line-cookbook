@@ -1,6 +1,6 @@
 # line Cookbook CHANGELOG
 
-## v
+## v2
 
 - Breaking change - Files are processed in memory instead of line by line
 - Use template files instead of cookbook_file so that we get platform sensitive line endings written for testing.
