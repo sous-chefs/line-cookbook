@@ -32,6 +32,9 @@ suites:
   run_list:
     - recipe[test::delete_lines]
     - recipe[test::delete_lines_ignore_missing_file]
+- name: filter_lines
+  run_list:
+    - recipe[test::filter_lines]
 - name: replace_or_add
   run_list:
     - recipe[test::resource_status]
