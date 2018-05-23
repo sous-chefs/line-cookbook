@@ -11,6 +11,12 @@ resources that will help you do this.
 - The eol processing was only tested using \n and \r\n. Using other line endings very well may not work.
 - The end of line string used needs to match the actual end of line used in the file.  \n and \r\n are used as the defaults but if they don't match the actual end of line used in the file the results will be weird.
 - Adding a line implies there is a seperator on the previous line.  Adding a line differs from appending characters.
+- Missing file processing is the way it is by intention
+  *  add_to_list -> do nothing, list not found so there is nothing to add to.
+  *  append_if_no_line.rb -> create file, add the line.
+  *  delete_from_list.rb -> do nothing, the list was not found which implies there is nothing to delete
+  *  delete_lines.rb -> do nothing, the line isn’t there which implies there is nothing to delete
+  *  replace_or_add.rb -> create file, add the line
 
 # Usage
 Add "depends 'line'" to your cookbook's metadata.rb to gain access to
@@ -88,6 +94,7 @@ Properties | Description | Type | Values and Default
 ----------|-------------|--------|--------
 path | File to update | String | Required, no default
 line | Line contents |  String | Required, no default
+ignore_missing | Don't fail if the file is missing  |  true or false | Default is true
 eol | Alternate line end characters |  String | default \n on unix, \r\n on windows
 backup | Backup before changing |  Boolean | default false
 
@@ -104,6 +111,7 @@ path | File to update | String | Required, no default
 pattern | Regular expression to select lines | Regular expression or String | Required, no default
 line | Line contents |  String | Required, no default
 replace_only | Don't append only replace matching lines |  true or false | Required, no default
+ignore_missing | Don't fail if the file is missing  |  true or false | Default is true
 eol | Alternate line end characters |  String | default \n on unix, \r\n on windows
 backup | Backup before changing |  Boolean | default false
 
@@ -118,7 +126,7 @@ Properties | Description | Type | Values and Default
 ----------|-------------|--------|--------
 path | File to update | String | Required, no default
 pattern | Regular expression to select lines | Regular expression or String | Required, no default
-ignore_missing | Don't fail if the file is missing  |  true or false | Default is false
+ignore_missing | Don't fail if the file is missing  |  true or false | Default is true
 eol | Alternate line end characters |  String | default \n on unix, \r\n on windows
 backup | Backup before changing |  Boolean | default false
 
@@ -139,6 +147,7 @@ pattern | Regular expression to select lines | Regular expression or String | Re
 delim | Delimiter entries | Array | Array of 1, 2 or 3 multi-character elements
 entry | Value to add | String | Required, No default
 ends_with | List ending |  String | No default
+ignore_missing | Don't fail if the file is missing  |  true or false | Default is true
 eol | Alternate line end characters |  String | default \n on unix, \r\n on windows
 backup | Backup before changing |  Boolean | default false
 
@@ -178,7 +187,7 @@ pattern | Regular expression to select lines | Regular expression or String | Re
 delim | Delimiter entries | Array | Array of 1, 2 or 3 multi-character elements
 entry | Value to delete | String | Required, No default
 ends_with | List ending |  String | No default
-ignore_missing | Don't fail if the file is missing  |  true or false | Default is false
+ignore_missing | Don't fail if the file is missing  |  true or false | Default is true
 eol | Alternate line end characters |  String | default \n on unix, \r\n on windows
 backup | Backup before changing |  Boolean | default false
 

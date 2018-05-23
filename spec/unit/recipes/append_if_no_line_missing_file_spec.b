@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: line
-# Spec:: add_to_list_missing_file
+# Spec:: append_if_no_line_missing_file
 #
 # Copyright 2017 Sous Chefs
 #
@@ -20,9 +20,9 @@
 require 'chefspec'
 require 'chefspec/berkshelf'
 
-describe 'spectest::add_to_list_missing_file' do
+describe 'spectest::append_if_no_line_file' do
   let(:chef_run) do
-    chef_run = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04', step_into: ['add_to_list'])
+    chef_run = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04', step_into: ['append_if_no_line'])
     chef_run.converge(described_recipe)
   end
 

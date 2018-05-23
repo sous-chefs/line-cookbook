@@ -18,19 +18,21 @@ platforms:
     box: mwrock/Windows2012R2
 
 suites:
-- name: delete_from_list
-  run_list:
-    - recipe[test::delete_from_list]
-    - recipe[test::delete_from_list_ignore_missing_file]
 - name: add_to_list
   run_list:
+    - recipe[test::resource_status]
     - recipe[test::add_to_list]
 - name: append_if_no_line
   run_list:
+    - recipe[test::resource_status]
     - recipe[test::append_if_no_line]
+- name: delete_from_list
+  run_list:
+    - recipe[test::resource_status]
+    - recipe[test::delete_from_list]
 - name: delete_lines
   run_list:
-    - recipe[test::delete_lines]
+    - recipe[test::resource_status]
     - recipe[test::delete_lines_ignore_missing_file]
 - name: filter_lines
   run_list:

@@ -160,3 +160,26 @@ add_to_list 'Empty files that are not changed should stay empty' do
   delim [' ']
   entry 'should_not_be_added'
 end
+
+file 'prep for test /tmp/nofilehere' do
+  path '/tmp/nofilehere'
+  action :delete
+end
+
+add_to_list 'missing_file fail' do
+  path '/tmp/nofilehere'
+  pattern Regexp.escape('empty_delimited_list=(')
+  delim [', ', '"']
+  ends_with ')'
+  entry 'newentry'
+  ignore_missing false
+  ignore_failure true
+end
+
+add_to_list 'missing_file' do
+  path '/tmp/nofilehere'
+  pattern Regexp.escape('empty_delimited_list=(')
+  delim [', ', '"']
+  ends_with ')'
+  entry 'newentry'
+end

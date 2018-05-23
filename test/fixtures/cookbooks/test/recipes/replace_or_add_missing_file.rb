@@ -2,6 +2,18 @@
 # Test replace_or_add with a missing file.
 #
 #
+file 'prep for test /tmp/missingfile' do
+  path '/tmp/missingfile'
+  action :delete
+end
+
+replace_or_add 'missing_file fail' do
+  path '/tmp/missingfile'
+  pattern 'Does not match'
+  line 'add this line'
+  ignore_missing false
+  ignore_failure true
+end
 
 replace_or_add 'missing_file' do
   path '/tmp/missingfile'

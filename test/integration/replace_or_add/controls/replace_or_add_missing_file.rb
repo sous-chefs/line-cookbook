@@ -23,6 +23,9 @@ control 'Replace or add to a missing file' do
   # redo of resource did nothing
   describe file('/tmp/chef_resource_status') do
     its(:content) { should match(/missing_file redo.*n#{eol}/) }
+    its(:content) { should match(/missing_file fail.*n#{eol}/) }
+    its(:content) { should match(/missing_file\]\s*y#{eol}/) }
+    its(:content) { should match(/missing_file redo.*n#{eol}/) }
     its(:content) { should match(/missing_file matches_pattern redo.*n#{eol}/) }
     its(:content) { should match(/missing_file replace_only.*n#{eol}/) }
   end

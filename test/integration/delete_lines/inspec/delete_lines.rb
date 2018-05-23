@@ -28,3 +28,8 @@ describe file('/tmp/emptyfile') do
   it { should be_file }
   its(:size) { should eq 0 }
 end
+
+describe file('/tmp/chef_resource_status') do
+  its(:content) { should match(/missing_file fail.*n/) }
+  its(:content) { should match(/missing_file\]\s*n/) }
+end

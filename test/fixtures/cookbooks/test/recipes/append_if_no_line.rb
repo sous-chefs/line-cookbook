@@ -51,8 +51,19 @@ append_if_no_line 'should add to empty file' do
   line 'added line'
 end
 
-append_if_no_line 'create missing file' do
+file 'prep for test /tmp/add_missing' do
+  path '/tmp/add_missing'
+  action :delete
+end
+
+append_if_no_line 'missing_file fail' do
   path '/tmp/add_missing'
   line 'added line'
-  ignore_missing true
+  ignore_missing false
+  ignore_failure true
+end
+
+append_if_no_line 'missing_file' do
+  path '/tmp/add_missing'
+  line 'added line'
 end

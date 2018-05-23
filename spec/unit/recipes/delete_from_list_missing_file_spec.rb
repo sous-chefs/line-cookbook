@@ -20,7 +20,7 @@
 require 'chefspec'
 require 'chefspec/berkshelf'
 
-describe 'test::delete_from_list_missing_file' do
+describe 'spectest::delete_from_list_missing_file' do
   let(:chef_run) do
     chef_run = ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04', step_into: ['delete_from_list'])
     chef_run.converge(described_recipe)

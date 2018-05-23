@@ -34,4 +34,9 @@ control 'Append lines' do
   describe file('/tmp/add_missing') do
     its(:content) { should match(/^added line#{eol}/) }
   end
+
+  describe file('/tmp/chef_resource_status') do
+    its(:content) { should match(/missing_file fail.*n/) }
+    its(:content) { should match(/missing_file\]\s*y/) }
+  end
 end
