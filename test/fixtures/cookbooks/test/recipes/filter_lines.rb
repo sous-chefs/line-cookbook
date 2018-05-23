@@ -3,7 +3,7 @@ directory '/tmp'
 template '/tmp/dangerfile' do
 end
 
-filter_lines 'Do nothings' do
+filter_lines 'Do nothing' do
   path '/tmp/dangerfile'
   filter proc { |current| current }
 end
