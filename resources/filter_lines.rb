@@ -16,7 +16,7 @@
 #
 
 property :backup, [true, false], default: false
-property :eol, String, default: Line::OS.unix? ? "\n" : "\r\n"
+property :eol
 property :filter, [Method, Proc, Array]
 property :filter_args, Array
 property :path, String
@@ -25,7 +25,7 @@ resource_name :filter_lines
 
 action :edit do
   new_resource.sensitive = true unless property_is_set?(:sensitive)
-  eol = new_resource.eol
+  eol = default_eol
   new = []
 
   current = ::File.exist?(new_resource.path) ? ::File.binread(new_resource.path).split(eol) : []
@@ -44,4 +44,8 @@ action :edit do
     sensitive new_resource.sensitive
     not_if { new == current }
   end
+end
+
+action_class do
+  include Line::Helper
 end

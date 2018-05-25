@@ -42,7 +42,6 @@ module Line
         next if lines_match(current, match, insert_array, :after)
         current[match] = Replacement.new(current[match], insert_array, :after)
       end
-      puts "CURRENT AFTER #{current}"
       expand(current)
     end
 
@@ -81,15 +80,16 @@ module Line
       when :after
         is = ia.size
         # check to see if enough lines after to match
-        if start + is > lines.size
+        puts
+        puts "FIT AFTER last #{start+is} size #{lines.size} test #{start + is <= lines.size}"
+        puts
+        if start + is <= lines.size
           # compare to see if the inserted lines are already there
           (0..(is - 1)).each do |j|
             next if lines[start + j +1] == ia[j]
             break
           end
         end
-      else
-        false
       end
     end
 
@@ -99,7 +99,6 @@ module Line
         # note - want to do *lines to add them instead adding an array
         new_lines.push line.class == Replacement ? line.insert : line
       end
-      puts "NEW LINES TO insert #{new_lines}"
       new_lines.flatten # add the lines better so we don't need this
     end
   end
