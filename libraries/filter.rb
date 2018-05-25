@@ -7,31 +7,20 @@ module Line
       # args[0] is a pattern to match a line
       # args[1] is an array of lines to insert before the matched lines
       # args[2] match instance, flatten, first, last
-      mp = args[0]
-      ia = args[1]
+      match_pattern = args[0]
+      insert_array = args[1]
       select_match = args[2] || :flatten
-      is = ia.size
+      select_match = :flatten if select_match.to_s == 'each'
+
+      # find lines matching the pattern
       matches = []
-      added_lines = 0
-      # find matching lines
-      current.each_index { |i| matches << i if current[i] =~ mp }
+      current.each_index { |i| matches << i if current[i] =~ match_pattern }
+
       [matches.send(select_match.to_s)].flatten.each do |match|
-        next unless match
-        lines_match = false
-        # check to see if enough lines before to match
-        if match + added_lines - is > -1
-          # compare to see if the inserted lines are already there
-          lines_match = true
-          (0..(is - 1)).each do |j|
-            next if current[match + added_lines - is + j] == ia[j]
-            lines_match = false
-            break
-          end
-        end
-        # insert the new lines before the matched line
-        (0..(is - 1)).each { |i| current.insert(match + added_lines, ia[i]); added_lines += 1 } unless lines_match
+        next if lines_match(current, match, insert_array, :before)
+        current[match] = Replacement.new(current[match], insert_array, :before)
       end
-      current
+      expand(current)
     end
 
     def after(current, args)
@@ -39,32 +28,102 @@ module Line
       # current is an array of lines
       # args[0] is a pattern to match a line
       # args[1] is an array of lines to insert after the matched lines
-      # args[2] match instance, flatten, first, last
-      mp = args[0]
-      ia = args[1]
+      # args[2] match instance, each => flatten, first, last
+      match_pattern = args[0]
+      insert_array = args[1]
       select_match = args[2] || :flatten
-      is = ia.size
+      select_match = :flatten if select_match.to_s == 'each'
+
+      # find matching lines  (match object, line #, insert match, insert direction)
       matches = []
-      added_lines = 0
-      # find matching lines
-      current.each_index { |i| matches << i if current[i] =~ mp }
+      current.each_index { |i| matches << i if current[i] =~ match_pattern }
+
       [matches.send(select_match.to_s)].flatten.each do |match|
-        next unless match
-        lines_match = false
-        # check to see if enough lines after to match
-        if current.size - (match + added_lines) > is
+        next if lines_match(current, match, insert_array, :after)
+        current[match] = Replacement.new(current[match], insert_array, :after)
+      end
+      puts "CURRENT AFTER #{current}"
+      expand(current)
+    end
+
+  def in_stanza(current, args)
+    # [a1]
+    #   lines in the a1 stanza
+    # [a2]
+    # args[0] stanza matching pattern
+    # args[1] stanza to select, if not there it will be created
+    # args[3] pattern to match
+    # args[4] line to replace or add to the stanza
+    # args[5] match instance, each, first, last
+    #
+    # Find the matches
+    # Select the matches
+    # For each match
+    #     Find next stanza or EOF
+    #     Bounds on the stanza lines
+    #     line matches pattern?
+    #     yes - next match
+  end
+
+    def lines_match(lines, start, ia, direction)
+      case direction
+      when :before
+        is = ia.size
+        # check to see if enough lines before to match
+        false
+        if start - is > -1
           # compare to see if the inserted lines are already there
-          lines_match = true
           (0..(is - 1)).each do |j|
-            next if current[match + added_lines + 1 + j] == ia[j]
-            lines_match = false
+            next if lines[start - is + j] == ia[j]
             break
           end
         end
-        # insert the new lines after the matched line
-        (0..(is - 1)).each { |i| current.insert(match + added_lines + 1, ia[i]); added_lines += 1 } unless lines_match
+      when :after
+        is = ia.size
+        # check to see if enough lines after to match
+        if start + is > lines.size
+          # compare to see if the inserted lines are already there
+          (0..(is - 1)).each do |j|
+            next if lines[start + j +1] == ia[j]
+            break
+          end
+        end
+      else
+        false
       end
-      current
+    end
+
+    def expand(lines)
+      new_lines = []
+      lines.each do |line|
+        # note - want to do *lines to add them instead adding an array
+        new_lines.push line.class == Replacement ? line.insert : line
+      end
+      puts "NEW LINES TO insert #{new_lines}"
+      new_lines.flatten # add the lines better so we don't need this
+    end
+  end
+
+  class Replacement
+    def initialize(original, additional, direction)
+      @original = original.dup
+      @additional = additional
+      @direction = direction # replace, before, after
+    end
+
+    def ==(other)
+      @original == other
+    end
+
+    def insert
+      case @direction
+      when :after
+        [@additional].unshift(@original)
+      when :before
+        [@additional].push(@original)
+      else
+        [@original]
+      end
     end
   end
 end

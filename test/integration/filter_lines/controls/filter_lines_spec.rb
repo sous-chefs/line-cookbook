@@ -41,15 +41,15 @@ control 'filter_lines - Verify the code to use filters. Verify several example f
   end
 
   describe file('/tmp/after') do
-    its(:content) { should match(/HELLO THERE I AM DANGERFILE#{eol}line1#{eol}line2#{eol}line3#{eol}/m) }
-    its(:content) { should match(/COMMENT ME AND I STOP YELLING I PROMISE#{eol}line1#{eol}line2#{eol}line3#{eol}/m) }
+    its(:content) { should match(/HELLO THERE I AM DANGERFILE#{eol}line1#{eol}line2#{eol}line3#{eol}# UN/m) }
+    its(:content) { should match(/COMMENT ME AND I STOP YELLING I PROMISE#{eol}line1#{eol}line2#{eol}line3#{eol}int/m) }
   end
   describe file_ext('/tmp/after') do
      its('size_lines') { should eq 11 }
   end
 
   describe file('/tmp/after_first') do
-    its(:content) { should match(/HELLO THERE I AM DANGERFILE#{eol}line1#{eol}line2#{eol}line3#{eol}/m) }
+    its(:content) { should match(/HELLO THERE I AM DANGERFILE#{eol}line1#{eol}line2#{eol}line3#{eol}# UN/m) }
     its(:content) { should match(/COMMENT ME AND I STOP YELLING I PROMISE#{eol}int/m) }
   end
   describe file_ext('/tmp/after_last') do
@@ -58,7 +58,7 @@ control 'filter_lines - Verify the code to use filters. Verify several example f
 
   describe file('/tmp/after_last') do
     its(:content) { should match(/HELLO THERE I AM DANGERFILE#{eol}# UNCOMMENT/m) }
-    its(:content) { should match(/COMMENT ME AND I STOP YELLING I PROMISE#{eol}line1#{eol}line2#{eol}line3#{eol}/m) }
+    its(:content) { should match(/COMMENT ME AND I STOP YELLING I PROMISE#{eol}line1#{eol}line2#{eol}line3#{eol}int/m) }
   end
   describe file_ext('/tmp/after_last') do
      its('size_lines') { should eq 8 }

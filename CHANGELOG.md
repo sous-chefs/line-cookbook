@@ -1,5 +1,9 @@
 # line Cookbook CHANGELOG
 
+## v2.1.0 (2018-06-01)
+
+- New function. The filter_lines resource.
+
 ## v2.0.0 (2018-05-19)
 
 - Breaking change - Files are processed in memory instead of line by line. It's possible that large files that were previously updated by the line cookbook will not be able to be processed
