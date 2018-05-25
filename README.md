@@ -98,6 +98,12 @@ ignore_missing | Don't fail if the file is missing  |  true or false | Default i
 eol | Alternate line end characters |  String | default \n on unix, \r\n on windows
 backup | Backup before changing |  Boolean | default false
 
+### Notes
+This resource is intended to match the whole line __exactly__. That means
+if the file contains ```this is my line ``` (trailing whitespace) and you've
+specified `line "this is my line"`, another line will be added. You may
+want to use `replace_or_add` instead, depending on your use case.
+
 ## Resource: replace_or_add
 ### Actions
 Action | Description 

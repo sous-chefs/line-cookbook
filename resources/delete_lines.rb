@@ -1,5 +1,5 @@
 property :backup, [true, false], default: false
-property :eol, String, default: Line::OS.unix? ? "\n" : "\r\n"
+property :eol, String
 property :ignore_missing, [true, false], default: true
 property :path, String
 property :pattern, [String, Regexp]
@@ -10,7 +10,7 @@ action :edit do
   return if !target_file_exist? && new_resource.ignore_missing
   raise_not_found
   sensitive_default
-  eol = new_resource.eol
+  eol = default_eol
   regex = new_resource.pattern.is_a?(String) ? /#{new_resource.pattern}/ : new_resource.pattern
   current = target_current_lines
 

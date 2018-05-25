@@ -1,5 +1,10 @@
 module Line
   module Helper
+    def default_eol
+      new_resource.eol = platform_family?('windows') ? "\r\n" : "\n" unless property_is_set?(:eol)
+      new_resource.eol
+    end
+
     def raise_not_found
       raise "File #{new_resource.path} not found" unless target_file_exist? || new_resource.ignore_missing
     end

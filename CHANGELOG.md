@@ -12,6 +12,8 @@
 - Make the processing of missing target files consistent. Add the ignore_missing property to the resources to allow a missing file to raise an error. 
 - Clean up the order of some boiler plate code.
 - Create helper methods for some common resource functions.
+- Drop the OS helpers in favor os using platform_family?
+
 
 ## v1.2.0 (2018-04-18)
 

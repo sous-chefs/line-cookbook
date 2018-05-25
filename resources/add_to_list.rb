@@ -2,7 +2,7 @@ property :backup, [true, false], default: false
 property :delim, Array
 property :entry, String
 property :ends_with, String
-property :eol, String, default: Line::OS.unix? ? "\n" : "\r\n"
+property :eol, String
 property :ignore_missing, [true, false], default: true
 property :path, String
 property :pattern, String
@@ -12,7 +12,7 @@ resource_name :add_to_list
 action :edit do
   raise_not_found
   sensitive_default
-  eol = new_resource.eol
+  eol = default_eol
   current = target_current_lines
 
   # insert

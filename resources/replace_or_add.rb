@@ -1,5 +1,5 @@
 property :backup, [true, false], default: false
-property :eol, String, default: Line::OS.unix? ? "\n" : "\r\n"
+property :eol, String
 property :ignore_missing, [true, false], default: true
 property :line, String
 property :path, String
@@ -11,7 +11,7 @@ resource_name :replace_or_add
 action :edit do
   raise_not_found
   sensitive_default
-  eol = new_resource.eol
+  eol = default_eol
   found = false
   regex = new_resource.pattern.is_a?(String) ? /#{new_resource.pattern}/ : new_resource.pattern
   new = []

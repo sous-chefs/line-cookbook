@@ -1,6 +1,6 @@
 directory '/tmp'
 
-eol = (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) ? "\r\n" : "\n"
+eol = /cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM ? "\r\n" : "\n"
 danger_contents = "HELLO THERE I AM DANGERFILE#{eol}# UNCOMMENT ME YOU FOOL#{eol}COMMENT ME AND I STOP YELLING I PROMISE#{eol}"
 
 template '/tmp/dangerfile' do
@@ -44,7 +44,9 @@ append_if_no_line 'should not edit the file' do
   line 'no carriage return line'
 end
 
-file '/tmp/add_emptyfile'
+file '/tmp/add_emptyfile' do
+  content ''
+end
 
 append_if_no_line 'should add to empty file' do
   path '/tmp/add_emptyfile'
