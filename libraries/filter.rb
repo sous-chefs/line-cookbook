@@ -80,9 +80,6 @@ module Line
       when :after
         is = ia.size
         # check to see if enough lines after to match
-        puts
-        puts "FIT AFTER last #{start+is} size #{lines.size} test #{start + is <= lines.size}"
-        puts
         if start + is <= lines.size
           # compare to see if the inserted lines are already there
           (0..(is - 1)).each do |j|
