@@ -2,11 +2,13 @@
 module Line
   class Filter
     def before(current, args)
-      # Insert a set of lines before each match of the pattern
+      # Insert a set of lines immediately before each match of the pattern
       # current is an array of lines
       # args[0] is a pattern to match a line
       # args[1] is an array of lines to insert before the matched lines
-      # args[2] match instance, flatten, first, last
+      # args[2] match instance, flatten, first, last, (anywhere before)
+      # TODO all of the lines are there anywhere before, order doesn't matter
+      # TODO all of the lines are there ignore comments
       match_pattern = args[0]
       insert_array = args[1]
       select_match = args[2] || :flatten
@@ -24,11 +26,12 @@ module Line
     end
 
     def after(current, args)
-      # Insert a set of lines after each match of the pattern
+      # Insert a set of lines immediately after each match of the pattern
       # current is an array of lines
       # args[0] is a pattern to match a line
       # args[1] is an array of lines to insert after the matched lines
-      # args[2] match instance, each => flatten, first, last
+      # args[2] match instance, each => flatten, first, last, (anywhere after)
+      # TODO all of the lines are there anywhere after, order doesn't matter
       match_pattern = args[0]
       insert_array = args[1]
       select_match = args[2] || :flatten
@@ -44,6 +47,10 @@ module Line
       end
       expand(current)
     end
+
+  def augeas(current, args)
+  # https://github.com/nhuff/chef-augeas
+  end
 
   def in_stanza(current, args)
     # [a1]
