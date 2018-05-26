@@ -2,7 +2,7 @@
 module Line
   class Filter
     def before(current, args)
-      # Insert a set of lines immediately before each match of the pattern
+      # Insert a set of lines immediately before each match of the pattern - seems like this has limited usefulness.  Comments and blank like would screw it up.
       # current is an array of lines
       # args[0] is a pattern to match a line
       # args[1] is an array of lines to insert before the matched lines
