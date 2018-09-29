@@ -1,5 +1,9 @@
 # line Cookbook CHANGELOG
 
+## v2.1.0 (2018-09-28)
+- Add the filter_lines resource
+- Add the after filter method to allow lines to be inserted after matching a line
+
 ## v2.0.2 (2018-06-29)
 - Explicitly disallow embedded EOL characters in replacement and append lines
 

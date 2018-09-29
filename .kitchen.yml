@@ -34,6 +34,11 @@ suites:
   run_list:
     - recipe[test::resource_status]
     - recipe[test::delete_lines]
+- name: filter_lines
+  run_list:
+    - recipe[test::resource_status]
+    - recipe[test::filter_lines_after]
+    - recipe[test::filter_lines_inline]
 - name: replace_or_add
   run_list:
     - recipe[test::resource_status]
