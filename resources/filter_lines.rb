@@ -15,11 +15,11 @@
 # limitations under the License.
 #
 
-property :path, String
+property :backup, [true, false, Integer], default: false
+property :eol
 property :filters, [Array, Hash, Method, Proc], required: true
 property :ignore_missing, [true, false], default: true
-property :backup, [true, false], default: false
-property :eol
+property :path, String
 
 resource_name :filter_lines
 
@@ -27,6 +27,7 @@ action :edit do
   raise_not_found
   new_resource.sensitive = true unless property_is_set?(:sensitive)
   eol = default_eol
+  backup_if_true
 
   # die horribly unless the file exists unless ignore_missing
   current = ::File.exist?(new_resource.path) ? ::File.binread(new_resource.path).split(eol) : []

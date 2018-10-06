@@ -1,6 +1,10 @@
 control 'Append lines' do
   eol = os.family == 'windows' ? "\r\n" : "\n"
 
+  describe command('ls /tmp/kitchen/backup/tmp') do
+    its(:stdout) { should match(/dangerfile\.chef-/) }
+  end
+
   describe file('/tmp/dangerfile') do
     its(:content) { should match(/HI THERE I AM STRING#{eol}/) }
   end

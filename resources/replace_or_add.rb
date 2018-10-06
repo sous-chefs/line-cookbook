@@ -1,4 +1,4 @@
-property :backup, [true, false], default: false
+property :backup, [true, false, Integer], default: false
 property :eol, String
 property :ignore_missing, [true, false], default: true
 property :line, String
@@ -12,6 +12,7 @@ action :edit do
   raise_not_found
   sensitive_default
   eol = default_eol
+  backup_if_true
   add_line = chomp_eol(new_resource.line)
   found = false
   regex = new_resource.pattern.is_a?(String) ? /#{new_resource.pattern}/ : new_resource.pattern

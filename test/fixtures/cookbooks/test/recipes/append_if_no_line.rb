@@ -13,6 +13,7 @@ end
 append_if_no_line 'Operation' do
   path '/tmp/dangerfile'
   line 'HI THERE I AM STRING'
+  backup true
 end
 
 append_if_no_line 'Operation redo' do

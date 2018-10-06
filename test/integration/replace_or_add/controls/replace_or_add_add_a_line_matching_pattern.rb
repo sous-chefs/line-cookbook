@@ -1,5 +1,10 @@
 control 'replace_or_add - Add a line exactly matching the pattern, pattern does not match the file' do
   eol = os.family == 'windows' ? "\r\n" : "\n"
+
+  describe command('ls /tmp/kitchen/backup/tmp') do
+    its('stdout') { should match(/dangerfile\.chef-/) }
+  end
+
   describe file_ext('/tmp/add_a_line_matching_pattern') do
     its('size_lines') { should eq 8 }
   end

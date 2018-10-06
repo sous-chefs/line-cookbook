@@ -21,6 +21,7 @@ end
 delete_lines 'Operation 5' do
   path '/tmp/dangerfile1'
   pattern '^HI.*'
+  backup true
 end
 
 delete_lines 'Operation 6' do

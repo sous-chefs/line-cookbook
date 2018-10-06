@@ -10,6 +10,7 @@ replace_or_add 'Operation 2' do
   path '/tmp/dangerfile'
   pattern 'hey there.*'
   line 'hey there how you doin'
+  backup true
 end
 
 replace_or_add 'Operation 3' do

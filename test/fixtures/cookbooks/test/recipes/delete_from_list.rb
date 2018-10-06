@@ -9,6 +9,7 @@ delete_from_list 'Delete Operation 1' do
   pattern 'my @net1918 ='
   delim [', ', '"']
   entry '10.0.0.0/8'
+  backup true
 end
 
 # # Delete the last entry in a list with delimited entries

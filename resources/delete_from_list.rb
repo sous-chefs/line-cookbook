@@ -1,4 +1,4 @@
-property :backup, [true, false], default: false
+property :backup, [true, false, Integer], default: false
 property :delim, Array
 property :entry, String
 property :eol, String
@@ -13,6 +13,7 @@ action :edit do
   raise_not_found
   sensitive_default
   eol = default_eol
+  backup_if_true
   regex = new_resource.pattern.is_a?(String) ? /#{new_resource.pattern}/ : new_resource.pattern
   new = []
   current = target_current_lines

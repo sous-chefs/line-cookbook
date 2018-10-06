@@ -9,6 +9,7 @@ add_to_list 'Add to an empty list, seperator' do
   pattern 'empty_list='
   delim [' ']
   entry 'newentry'
+  backup true
 end
 
 add_to_list 'Add an entry to an empty list, seperator' do

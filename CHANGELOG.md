@@ -1,5 +1,8 @@
 # line Cookbook CHANGELOG
 
+## v2.1.1 (2018-10-06)
+- Allow the backup option to be specified as true
+
 ## v2.1.0 (2018-09-28)
 - Add the filter_lines resource
 - Add the after filter method to allow lines to be inserted after matching a line

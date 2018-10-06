@@ -1,6 +1,10 @@
 title 'Delete from list'
 eol = os.family == 'windows' ? "\r\n" : "\n"
 
+describe command('ls /tmp/kitchen/backup/tmp') do
+  its(:stdout) { should match(/dangerfile3\.chef-/) }
+end
+
 describe file('/tmp/dangerfile3') do
   its(:content) { should_not match(/192\.168\.0\.0/) }
   its(:content) { should_not match(/10\.0\.0\.0/) }

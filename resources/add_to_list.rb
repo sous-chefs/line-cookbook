@@ -1,4 +1,4 @@
-property :backup, [true, false], default: false
+property :backup, [true, false, Integer], default: false
 property :delim, Array
 property :entry, String
 property :ends_with, String
@@ -13,6 +13,7 @@ action :edit do
   raise_not_found
   sensitive_default
   eol = default_eol
+  backup_if_true
   current = target_current_lines
 
   # insert

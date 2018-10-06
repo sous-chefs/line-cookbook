@@ -34,6 +34,10 @@ module Line
       end
     end
 
+    def backup_if_true
+      new_resource.backup = 5 if new_resource.backup == true
+    end
+
     def chomp_eol(line)
       fixed = line.chomp(new_resource.eol)
       raise ArgumentError, "Line #{line} has embedded EOL characters, not allowed for this resource" if fixed =~ /#{new_resource.eol}/

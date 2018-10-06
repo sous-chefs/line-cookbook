@@ -1,6 +1,10 @@
 title 'Add to list'
 eol = os.family == 'windows' ? "\r\n" : "\n"
 
+describe command('ls /tmp/kitchen/backup/tmp') do
+  its(:stdout) { should match(/dangerfile3\.chef-/) }
+end
+
 describe file('/tmp/dangerfile3') do
   its(:content) { should match(/empty_list=newentry/) }
 end

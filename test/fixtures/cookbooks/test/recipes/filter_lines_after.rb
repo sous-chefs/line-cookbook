@@ -19,6 +19,7 @@ filter_lines 'Insert lines after match' do
   sensitive false
   path '/tmp/after'
   filters after: [match_pattern, insert_lines]
+  backup true
 end
 
 filter_lines 'Insert lines after match redo' do

@@ -1,5 +1,9 @@
 title 'Delete lines'
 
+describe command('ls /tmp/kitchen/backup/tmp') do
+  its(:stdout) { should match(/dangerfile1\.chef-/) }
+end
+
 describe file('/tmp/dangerfile1') do
   its(:content) { should_not match(/HI THERE I AM DANGERFILE/) }
   its(:content) { should match(/int main/) }
