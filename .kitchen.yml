@@ -37,6 +37,7 @@ suites:
     - recipe[test::resource_status]
     - recipe[test::filter_lines_after]
     - recipe[test::filter_lines_before]
+    - recipe[test::filter_lines_between]
     - recipe[test::filter_lines_comment]
     - recipe[test::filter_lines_delete_between]
     - recipe[test::filter_lines_inline]
