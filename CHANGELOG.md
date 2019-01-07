@@ -5,6 +5,7 @@
 Allow selected lines to be changed to comments in a file.
 - Add the safe option to the after and before filter. 
 Safe was the intended behavior.
+- Add missing tests for methods verify_kind and verify_one_of.
 
 ## v2.2.0 (2018-10-09)
 - Add the before filter method to allow lines to be inserted before a matching line.
