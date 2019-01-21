@@ -3,6 +3,8 @@
 # Unreleased - for target version 2.3.0 in mid Janary 2018
 - Add the comment filter. 
 Allow selected lines to be changed to comments in a file.
+- Add the replace filter. 
+Allow selected lines in a file to be replaces by other lines.
 - Add the safe option to the after and before filter. 
 Safe was the intended behavior.
 
