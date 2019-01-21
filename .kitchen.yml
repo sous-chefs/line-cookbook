@@ -40,6 +40,7 @@ suites:
     - recipe[test::filter_lines_comment]
     - recipe[test::filter_lines_inline]
     - recipe[test::filter_lines_multi]
+    - recipe[test::filter_lines_replace]
 - name: replace_or_add
   run_list:
     - recipe[test::resource_status]
