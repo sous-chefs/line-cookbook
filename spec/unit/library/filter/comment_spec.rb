@@ -21,6 +21,7 @@ include Line
 describe 'comment method' do
   before(:each) do
     @filt = Line::Filter.new
+    @filt.safe_default = true
     @current = ['line3', 'line2', 'line1', 'c1', 'line3', 'line2', '# c1', 'line1', 'c1', 'c2']
     @solo_start = %w(c1 linef lineg lineh )
     @solo_middle = %w(linef c1 lineg )

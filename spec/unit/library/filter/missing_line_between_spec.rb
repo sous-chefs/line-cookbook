@@ -21,6 +21,7 @@ include Line
 describe 'missing_lines_between method' do
   before(:each) do
     @filt = Line::Filter.new
+    @filt.safe_default = true
   end
 
   # missing_lines_between(current, start, match, ia)

@@ -60,7 +60,8 @@ module Line
     end
 
     def safe_default
-      defined?(@safe) ? @safe : true
+      # @safe must be defined by a call to safe_default by the filter resource
+      @safe
     end
 
     def safe_default=(option)
