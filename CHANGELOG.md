@@ -1,6 +1,6 @@
 # line Cookbook CHANGELOG
 
-# Unreleased - for target version 2.3.0 in mid Janary 2018
+# Unreleased - for target version 2.3.0 in mid January 2019
 - Add the comment filter. 
 Allow selected lines to be changed to comments in a file.
 - Add the safe option to the after and before filter. 
