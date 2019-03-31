@@ -87,6 +87,12 @@ Proc    ::= A reference to a proc that has a signature of proc(current lines is 
 
 | Built in Filter | Description                                 | Arguments        | arg1                               | arg2                                                       | arg3 |
 | --------------- | ------------------------------------------- | ---------------- | ---------------------------------- | ---------------------------------------------------------- | ---- |
-| `:after`        | Insert lines after a matching line          | Pattern to match | String or Array of lines to insert | `:each`, `:first`, or `:last` to select the matching lines | options |
-| `:before`       | Insert lines before a matching line         | Pattern to match | String or Array of lines to insert | :each, :first, or :last to select the matching lines       | options |
-| `:missing`      | Insert lines before or after existing lines | Pattern to match | String or Array of lines to insert | `:before`, `:after`                                        |
+| [:after](filters/after.md)    | Insert lines after a matching line          | Pattern to match | String or Array of lines to insert | `:each`, `:first`, or `:last` to select the matching lines | options |
+| [:before](filters/before.md)       | Insert lines before a matching line         | Pattern to match | String or Array of lines to insert | :each, :first, or :last to select the matching lines       | options |
+| [:between](filters/between.md)      | Insert lines between matched lines          | Pattern - Insert after this| Pattern - Insert before this | Lines to insert | options |
+| [:comment](filters/comment.md)      | Change lines to comments                    | Pattern to match | Comment string                     |  String to add after the comment indicator   |  |
+| [:delete_between](filters/delete_between.md)| Delete lines between matching patterns     | Pattern - delete after this | Pattern - delete before this | `:exclude`, `:include`, `:first`, `:last` | |
+| [:missing](filters/missing.md)      | Insert lines before or after existing lines | String or Array of lines to add | `:before`, `:after` | |
+| [:replace](filters/replace.md)      | Replace matching lines                      | Pattern to match | String or Array to replace the matched line | options                       | |
+| [:stanza](filters/stanza.md)       | Insert or change keys in a stanza           | Stanza name | Hash of keys and values to set   |             | options |
+| [:substitute](filters/substitute.md)   | substitute test in matching lines           | Pattern to select lines | Replacement text | Pattern to select text to replace   | options |
