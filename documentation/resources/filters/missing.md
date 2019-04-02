@@ -17,6 +17,6 @@ add2
 ## Filter
 ````
 addlines = "add1\nadd2\n"
-filter_lines '/example' do
+filter_lines '/example/missing' do
  filters(missing: [addlines, :last])
 end

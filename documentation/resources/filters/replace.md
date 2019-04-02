@@ -16,6 +16,6 @@ add2
 ## Filter
 ````
 addlines = "add1\nadd2\n"
-filter_lines '/example' do
+filter_lines '/example/replace' do
  filters(replace: [/^line2$/, addlines])
 end

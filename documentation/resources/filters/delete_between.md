@@ -23,6 +23,6 @@ line3
 ## Filter
 ````
 dellines = "del1\ndel2\n"
-filter_lines '/example' do
+filter_lines '/example/delete_between' do
  filters(delete_between: [/^line2$/, /^line3$/, dellines, :last])
 end

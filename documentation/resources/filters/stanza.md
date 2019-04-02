@@ -20,7 +20,7 @@ line3 add3
 
 ## Filter
 ````
-filter_lines '/example' do
+filter_lines '/example/stanza' do
  filters([
    { stanza: ['first', { line1: 'new1', line2: 'addme'}] },
    { stanza: ['second', { line3: 'add3' }] },

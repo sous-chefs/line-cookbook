@@ -26,6 +26,6 @@ lines = <<~EOF
 EOF
 addlines= lines.gsub(/^\s+/,'')
 
-filter_lines '/example' do
+filter_lines '/example/after' do
  filters(after: [/^line2$/, addlines, :last])
 end

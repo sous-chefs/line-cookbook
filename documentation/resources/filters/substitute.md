@@ -14,6 +14,6 @@ line2 text new
 
 ## Filter
 ````
-filter_lines '/example' do
+filter_lines '/example/substitute' do
  filters(substitute: [/^line2/, /here/, 'new'])
 end

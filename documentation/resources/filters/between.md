@@ -19,6 +19,6 @@ line3
 ## Filter
 ````
 addlines = "add1\nadd2\n"
-filter_lines '/example' do
+filter_lines '/example/between' do
  filters(between: [/^line2$/, /^line3$/, addlines, :last])
 end

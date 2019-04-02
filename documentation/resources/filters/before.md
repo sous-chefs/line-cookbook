@@ -17,6 +17,6 @@ line2
 ## Filter
 ````
 addlines = "add1\nadd2\n"
-filter_lines '/example' do
+filter_lines '/example/before' do
  filters(before: [/^line2$/, addlines, :last])
 end
