@@ -95,4 +95,4 @@ Proc    ::= A reference to a proc that has a signature of proc(current lines is 
 | [:missing](filters/missing.md)      | Insert lines before or after existing lines | String or Array of lines to add | `:before`, `:after` | |
 | [:replace](filters/replace.md)      | Replace matching lines                      | Pattern to match | String or Array to replace the matched line | options                       | |
 | [:stanza](filters/stanza.md)       | Insert or change keys in a stanza           | Stanza name | Hash of keys and values to set   |             | options |
-| [:substitute](filters/substitute.md)   | substitute test in matching lines           | Pattern to select lines | Replacement text | Pattern to select text to replace   | options |
+| [:substitute](filters/substitute.md)   | substitute test in matching lines           | Pattern to select lines | Pattern to select text | Replacement text |  options |
