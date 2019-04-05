@@ -14,6 +14,7 @@ Safe was the intended behavior.
 - Add missing tests for methods verify_kind and verify_one_of.
 - Allow inserted lines to be specified as strings. Split input strings on EOL characters.
 - Add the substitute filter
+- Add the stanza filter
 
 ## v2.2.0 (2018-10-09)
 - Add the before filter method to allow lines to be inserted before a matching line.
