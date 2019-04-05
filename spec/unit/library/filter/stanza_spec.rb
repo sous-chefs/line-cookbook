@@ -21,7 +21,6 @@ include Line
 describe 'stanza method' do
   before(:each) do
     @filt = Line::Filter.new
-    @ia = %w(line1 line2 line3)
     @current = [
       '[head1]',
       '# comment',
@@ -35,9 +34,20 @@ describe 'stanza method' do
       '  key3.1 = val1',
       '[head4]',
     ]
-    @chkregex = [
+    @sample2 = [
       '[name.-_%@]',
       '  name.-_%@ = val1',
+    ]
+    @sample_repeated_stanza = [
+      '[head1]',
+      '  key1 = val1',
+      '[head1]',
+      '  key2 = val2',
+    ]
+    @sample_repeated_key = [
+      '[head1]',
+      '  key1 = val1',
+      '  key1 = val2',
     ]
   end
 
@@ -82,8 +92,18 @@ describe 'stanza method' do
   end
 
   it 'should find names with all the characters in the key pattern' do
-    out_lines = @chkregex.map { |line| line }
+    out_lines = @sample2.map { |line| line }
     out_lines[1] = '  name.-_%@ = replace1'
-    expect(@filt.stanza(@chkregex, ['name.-_%@', { 'name.-_%@' => 'replace1' }])).to eq(out_lines)
+    expect(@filt.stanza(@sample2, ['name.-_%@', { 'name.-_%@' => 'replace1' }])).to eq(out_lines)
+  end
+
+  it 'should do this with multiple stanzas of the same name' do
+    out_lines = ['[head1]', '  key1 = val1', '[head1]', '  key1 = replace1', '  newkey = insertvalue', '  key2 = val2']
+    expect(@filt.stanza(@sample_repeated_stanza, ['head1', { 'key1' => 'replace1', newkey: 'insertvalue' }])).to eq(out_lines)
+  end
+
+  it 'should do this with multiple keys of the same name' do
+    out_lines = ['[head1]', '  newkey = insertvalue', '  key1 = val1', '  key1 = replace1']
+    expect(@filt.stanza(@sample_repeated_key, ['head1', { 'key1' => 'replace1', newkey: 'insertvalue' }])).to eq(out_lines)
   end
 end

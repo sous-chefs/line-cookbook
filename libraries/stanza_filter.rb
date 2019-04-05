@@ -22,7 +22,9 @@ module Line
       # Assumes stanzas are named uniquely across the file and contiguous
       # Stanza starts with ^[<name>]$
       # Stanza ends with next stanza or EOF
-      # Sets one instance of a key in a stanza to a new value TODO: set last found
+      # Sets one instance of a key in a stanza to a new value
+      # Only the last matching stanza will be updated in case of duplicated stanza names
+      # Only the last matching key value within a stanza will be updated in case of duplicated key names
       # Example
       # [a1]
       #   att1 = value1
@@ -53,7 +55,7 @@ module Line
       current.each_index do |i|
         md = stanza_regex.match(current[i])
         next unless md
-        stanza_names[md[:name]] = i # TODO: There might be multiple stanzas with the same name
+        stanza_names[md[:name]] = i
       end
       stanza_names
     end
