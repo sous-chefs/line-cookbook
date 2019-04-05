@@ -1,5 +1,5 @@
 #
-# Spec tests for the replace filter
+# Spec tests for the substitute filter
 #
 
 control 'filter_lines_substitute - Verify the code to use the substitute filter.' do
