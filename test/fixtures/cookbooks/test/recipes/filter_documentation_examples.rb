@@ -1,5 +1,5 @@
 # documentation examples
-dir '/example'
+directory '/example'
 
 # Examples for the after filter
 file '/example/after' do
@@ -41,9 +41,8 @@ end
 file '/example/delete_between' do
   content "line1\ndel1\ndel2\nline2\ndel1\ndel2\nline3\n"
 end
-dellines = "del1\ndel2\n"
 filter_lines '/example/delete_between' do
-  filters(delete_between: [/^line2$/, /^line3$/, dellines, :last])
+  filters(delete_between: [/^line2$/, /^line3$/, /del/, :last])
 end
 
 # Examples for the missing filter
@@ -52,7 +51,7 @@ file '/example/missing' do
 end
 addlines = "add1\nadd2\n"
 filter_lines '/example/missing' do
-  filters(missing: [addlines, :last])
+  filters(missing: [addlines, :after])
 end
 
 # Examples for the replace filter
@@ -66,7 +65,7 @@ end
 
 # Examples for the stanza filter
 file '/example/stanza' do
-  content "[first]\nline1 value1\n[second]\nline2 vaule2\n"
+  content "[first]\n  line1 = value1\n[second]\n  line2 = value2\n"
 end
 filter_lines '/example/stanza' do
   filters([
@@ -76,7 +75,7 @@ filter_lines '/example/stanza' do
 end
 
 # Examples for the substitute filter
-file '/example/stanza' do
+file '/example/substitute' do
   content "line1 text here\nline2 text here\n"
 end
 filter_lines '/example/substitute' do

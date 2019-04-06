@@ -30,7 +30,7 @@ control 'filter_documentation_examples' do
   end
 
   describe file('/example/stanza') do
-    its(:content) { should eq "[first]#{eol}line1 new1#{eol}line2 addme#{eol}[second]#{eol}line2 value2#{eol}line3 add3#{eol}" }
+    its(:content) { should eq "[first]#{eol}  line2 = addme#{eol}  line1 = new1#{eol}[second]#{eol}  line3 = add3#{eol}  line2 = value2#{eol}" }
   end
 
   describe file('/example/substitute') do
