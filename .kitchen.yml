@@ -35,6 +35,7 @@ suites:
 - name: filter_lines
   run_list:
     - recipe[test::resource_status]
+    - recipe[test::filter_documentation_examples]
     - recipe[test::filter_lines_after]
     - recipe[test::filter_lines_before]
     - recipe[test::filter_lines_between]

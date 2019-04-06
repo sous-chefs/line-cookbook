@@ -94,5 +94,5 @@ Proc    ::= A reference to a proc that has a signature of proc(current lines is 
 | [:delete_between](filters/delete_between.md)| Delete lines between matching patterns     | Pattern - delete after this | Pattern - delete before this | `:exclude`, `:include`, `:first`, `:last` | |
 | [:missing](filters/missing.md)      | Insert lines before or after existing lines | String or Array of lines to add | `:before`, `:after` | |
 | [:replace](filters/replace.md)      | Replace matching lines                      | Pattern to match | String or Array to replace the matched line | options                       | |
-| [:stanza](filters/stanza.md)       | Insert or change keys in a stanza           | Stanza name | Hash of keys and values to set   |             | options |
+| [:stanza](filters/stanza.md)       | Insert or change keys in a stanza           | Stanza name | Hash of keys and values to set   | `:equal`, `:value` to select the key style  |  |
 | [:substitute](filters/substitute.md)   | substitute test in matching lines           | Pattern to select lines | Pattern to select text | Replacement text |  options |

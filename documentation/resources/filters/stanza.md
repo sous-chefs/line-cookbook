@@ -3,19 +3,19 @@
 ## Original file
 ````
 [first]
-line1 value1
+line1 = value1
 [second]
-line2 vaule2
+line2 = vaule2
 ````
 
 ## Output file
 ````
 [first]
-line1 new1
-line2 addme
+  line2 = addme
+line1 = new1
 [second]
-line2 value2
-line3 add3
+  line3 = add3
+line2 = value2
 ````
 
 ## Filter
