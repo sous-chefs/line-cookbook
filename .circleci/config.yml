@@ -1,73 +1,76 @@
 version: 2.1
 
 orbs:
-  kitchen: sous-chefs/kitchen@1.0.1
+  kitchen: sous-chefs/kitchen@2
 
 workflows:
   kitchen:
     jobs:
+      # Lint
       - kitchen/danger:
           name: danger
           context: Danger
-      - kitchen/lint:
-          name: lint
+      - kitchen/delivery:
+          name: delivery
+
+      # Resource tests
       - kitchen/dokken-single:
           name: add-to-list-centos-7
           suite: add-to-list
           platform: centos-7
-          requires: [ lint, danger ]
+          requires: [ delivery, danger ]
       - kitchen/dokken-single:
           name: add-to-list-ubuntu-1804
           suite: add-to-list
           platform: ubuntu-1804
-          requires: [ lint, danger ]
+          requires: [ delivery, danger ]
       - kitchen/dokken-single:
           name: append-if-no-line-centos-7
           suite: append-if-no-line
           platform: centos-7
-          requires: [ lint, danger ]
+          requires: [ delivery, danger ]
       - kitchen/dokken-single:
           name: append-if-no-line-ubuntu-1804
           suite: append-if-no-line
           platform: ubuntu-1804
-          requires: [ lint, danger ]
+          requires: [ delivery, danger ]
       - kitchen/dokken-single:
           name: delete-from-list-centos-7
           suite: delete-from-list
           platform: centos-7
-          requires: [ lint, danger ]
+          requires: [ delivery, danger ]
       - kitchen/dokken-single:
           name: delete-from-list-ubuntu-1804
           suite: delete-from-list
           platform: ubuntu-1804
-          requires: [ lint, danger ]
+          requires: [ delivery, danger ]
       - kitchen/dokken-single:
           name: delete-lines-centos-7
           suite: delete-lines
           platform: centos-7
-          requires: [ lint, danger ]
+          requires: [ delivery, danger ]
       - kitchen/dokken-single:
           name: delete-lines-ubuntu-1804
           suite: delete-lines
           platform: ubuntu-1804
-          requires: [ lint, danger ]
+          requires: [ delivery, danger ]
       - kitchen/dokken-single:
           name: filter-lines-centos-7
           suite: filter-lines
           platform: centos-7
-          requires: [ lint, danger ]
+          requires: [ delivery, danger ]
       - kitchen/dokken-single:
           name: filter-lines-ubuntu-1804
           suite: filter-lines
           platform: ubuntu-1804
-          requires: [ lint, danger ]
+          requires: [ delivery, danger ]
       - kitchen/dokken-single:
           name: replace-or-add-centos-7
           suite: replace-or-add
           platform: centos-7
-          requires: [ lint, danger ]
+          requires: [ delivery, danger ]
       - kitchen/dokken-single:
           name: replace-or-add-ubuntu-1804
           suite: replace-or-add
           platform: ubuntu-1804
-          requires: [ lint, danger ]
+          requires: [ delivery, danger ]
