@@ -44,16 +44,16 @@ For more detailed information see the matching resource documentation:
 - [filter_lines](https://github.com/sous-chefs/line/blob/master/documentation/resources/filter_lines.md) - Supply a ruby proc or use a sample filter to edit lines.
   The filter_lines resource supports multiple line modfications.
 
-  Sample filters:
-  - after: Insert lines after a matched line
-  - before: Insert lines before a matched lined
-  - between: Insert lines between matched lines
-  - comment: Change lines to comments
-  - delete_between: Delete the lines found between two patterns
-  - missing: Add missing lines to a file
-  - replace: Replace each instance of matched lines
-  - stanza: Insert or change keys in files formatted in stanzas
-  - substitute: Substitute text in lines matching a pattern
+### Sample filters:
+-     after: Insert lines after a matched line
+-     before: Insert lines before a matched lined
+-     between: Insert lines between matched lines
+-     comment: Change lines to comments
+-     delete_between: Delete the lines found between two patterns
+-     missing: Add missing lines to a file
+-     replace: Replace each instance of matched lines
+-     stanza: Insert or change keys in files formatted in stanzas
+-     substitute: Substitute text in lines matching a pattern
 
 ## Authors
 
