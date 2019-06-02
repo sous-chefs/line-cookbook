@@ -2,6 +2,7 @@
 
 ## v2.3.2
 - Fix internal documentation references
+- Bump to get a rebuild
 
 ## v2.3.1
 - Try to make the links pretty on supermarket.chef.io.  Relative links did not translate well.
