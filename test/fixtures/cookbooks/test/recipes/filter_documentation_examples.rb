@@ -63,6 +63,23 @@ filter_lines '/example/replace' do
   filters(replace: [/^line2$/, addlines])
 end
 
+# Examples for the replace_between filter
+file '/example/replace_between' do
+  content "line1\nline2\nline3"
+end
+replines = "rep1\nrep2\n"
+filter_lines '/example/replace_between' do
+  filters(replace_between: [/^line1$/, /^line3$/, replines])
+end
+
+file '/example/replace_between_include_bounds' do
+  content "line1\nline2\nline3"
+end
+replines = "rep1\nrep2\n"
+filter_lines '/example/replace_between_include_bounds' do
+  filters(replace_between: [/^line1$/, /^line3$/, replines, :include])
+end
+
 # Examples for the stanza filter
 file '/example/stanza' do
   content "[first]\n  line1 = value1\n[second]\n  line2 = value2\n"

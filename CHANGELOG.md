@@ -1,5 +1,8 @@
 # line Cookbook CHANGELOG
 
+## v2.4.0
+- Add the replace_between filter to allow replacing all of the lines between two lines that match patterns.
+
 ## v2.3.3
 - Fix `filter_lines` to work with Chef12. The filters helper method matched the name of a resource property.
 Changed the name to avoid the collision.

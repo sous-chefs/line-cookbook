@@ -52,6 +52,7 @@ For more detailed information see the matching resource documentation:
 -     delete_between: Delete the lines found between two patterns
 -     missing: Add missing lines to a file
 -     replace: Replace each instance of matched lines
+-     replace_between: Replace lines between matched lines
 -     stanza: Insert or change keys in files formatted in stanzas
 -     substitute: Substitute text in lines matching a pattern
 

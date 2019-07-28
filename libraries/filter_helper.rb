@@ -70,6 +70,13 @@ module Line
       lines || []
     end
 
+    def match_insert_lines(match_pattern, insert_lines, safe)
+      return unless safe
+      insert_lines.any? do |line|
+        line =~ match_pattern
+      end
+    end
+
     def options(values, allowed)
       # allowed is {option_name: [settings]}
       @options ||= {}
@@ -96,7 +103,7 @@ module Line
       return unless safe
       error_message = 'Inserted lines should not match the insert location pattern'
       insert_lines.each do |line|
-        raise ArgumentError, "Error - #{error_message}" if line =~ match_pattern
+        raise ArgumentError, "Error - #{error_message} line #{line} matches #{match_pattern}" if line =~ match_pattern
       end
     end
 

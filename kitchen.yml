@@ -47,6 +47,7 @@ suites:
       - recipe[test::filter_lines_inline]
       - recipe[test::filter_lines_multi]
       - recipe[test::filter_lines_replace]
+      - recipe[test::filter_lines_replace_between]
       - recipe[test::filter_lines_stanza]
       - recipe[test::filter_lines_substitute]
   - name: replace_or_add

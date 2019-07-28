@@ -79,7 +79,7 @@ filters ::= filter | [<filter>, ...]
 filter  ::= <code> | { <code> => <args>  }
 args    ::= <String> | <Array>
 code    ::= <Symbol> | <Method> | <Proc>
-Symbol  ::= :after | :before | :between | :comment | :replace | :stanza | :substitute
+Symbol  ::= :after | :before | :between | :comment | :delete | :missing | :replace | :replace_between | :stanza | :substitute
             Symbols are translated to methods in Line::Filter
 Method  ::= A reference to a method that has a signature of method(current lines is Array, args is Array)
             and that  returns an array
@@ -98,5 +98,6 @@ Proc    ::= A reference to a proc that has a signature of proc(current lines is 
 | [:delete_between](https://github.com/sous-chefs/line/blob/master/documentation/resources/filters/delete_between.md)| Delete lines between matching patterns     | Pattern - delete after this | Pattern - delete before this | `:exclude`, `:include`, `:first`, `:last` | |
 | [:missing](https://github.com/sous-chefs/line/blob/master/documentation/resources/filters/missing.md)      | Insert lines before or after existing lines | String or Array of lines to add | `:before`, `:after` | |
 | [:replace](https://github.com/sous-chefs/line/blob/master/documentation/resources/filters/replace.md)      | Replace matching lines                      | Pattern to match lines | String or Array to replace the matched line | Options                       | |
+| [:replace_between](https://github.com/sous-chefs/line/blob/master/documentation/resources/filters/replace_between.md)      | Replace lines between matches | Start pattern | End Pattern | String or Array to replace the lines between matches | Boundary line  processing `:exclude`, `:include`, `:first`, `:last` | Options |
 | [:stanza](https://github.com/sous-chefs/line/blob/master/documentation/resources/filters/stanza.md)       | Insert or change keys in a stanza           | Stanza name | Hash of keys and values to set   | `:equal`, `:value` to select the key style  |  |
 | [:substitute](https://github.com/sous-chefs/line/blob/master/documentation/resources/filters/substitute.md)   | Substitute text in matching lines           | Pattern to select lines | Pattern to select text | Replacement text |  Options |

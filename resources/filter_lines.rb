@@ -44,7 +44,7 @@ action :edit do
   # filter ::= <code> | { <code> => <args> }
   # args ::= <String> | <Array>
   # code ::= <Symbol> | <Method> | <Proc>
-  # Symbol ::= :after | :before | :between | :comment | :delete_between | :missing | :replace | :stanza | :substitute
+  # Symbol ::= :after | :before | :between | :comment | :delete_between | :missing | :replace | :replace_between | :stanza | :substitute
   # Method ::= A reference to a method that has a signature of method(current lines is Array, args is Array) and returns an array
   # Proc ::= A reference to a proc that has a signature of proc(current lines is Array, args is Array) and returns an array
   #
